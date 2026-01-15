@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orientação Financeira — Página Educativa</title>
+  <meta name="description" content="Página educativa com informações e orientações financeiras para ajudar cidadãos a compreender melhor seus dados e histórico financeiro. Conteúdo informativo e independente.">
+
+  <script>
+    window.pixelId = "68f476bd41dfe23b5735eb06";
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script>
+
+  <style>
+    :root {
+      --primary: #facc15;
+      --primary-dark: #eab308;
+      --accent: #fffbea;
+      --text: #1f2937;
+      --bg: #fefdf9;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 480px;
+      width: 100%;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .icon {
+      width: 72px;
+      height: 72px;
+      background: var(--primary);
+      border-radius: 999px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 8px 16px rgba(250,204,21,0.25);
+    }
+    .icon svg {
+      width: 38px;
+      height: 38px;
+      stroke: #fff;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    h1 {
+      color: var(--primary-dark);
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    p.desc {
+      color: #4b5563;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .hold-btn {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      padding: 14px 0;
+      background: linear-gradient(to right, var(--primary), var(--primary-dark));
+      color: #1f2937;
+      border: none;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.1s ease;
+      box-shadow: 0 8px 18px rgba(250,204,21,0.25);
+    }
+    .hold-btn:active { transform: scale(0.98); }
+
+    .progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: rgba(255,255,255,0.4);
+      width: 0%;
+      border-radius: 999px;
+      transition: width 0.1s linear;
+    }
+
+    .info-box {
+      background: var(--accent);
+      border-left: 4px solid var(--primary-dark);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      color: #78350f;
+      margin-top: 18px;
+      text-align: left;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 28px;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+    footer a {
+      color: var(--primary-dark);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <div class="icon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M20 6 9 17l-5-5" />
+      </svg>
+    </div>
+
+    <h1>Consulte agora</h1>
+    <p class="desc">
+      Esta página oferece informações educativas.  
+      O objetivo é ajudar o cidadão a compreender melhor seus dados e histórico de forma segura e gratuita.
+    </p>
+
+    <button class="hold-btn" id="holdButton">
+      <div class="progress" id="progressBar"></div>
+      SEGURE PARA CONTINUAR
+    </button>
+
+    <div class="info-box">
+      ✅ <strong>Conteúdo educativo:</strong> esta página possui caráter exclusivamente informativo e tem como finalidade oferecer orientação financeira e cidadã. Nenhum dado pessoal é solicitado.
+    </div>
+
+    <div class="info-box">
+      ℹ️ <em>Conteúdo informativo e independente. Nosso objetivo é compartilhar orientações financeiras de forma simples e educativa.</em>
+    </div>
+
+    <footer>
+      <div>© 2025 — Orientação Financeira | Projeto de Educação Digital</div>
+      <div style="margin-top: 6px;">
+        <a href="/politica">Política de Privacidade</a> |
+        <a href="/termos">Termos de Uso</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const btn = document.getElementById('holdButton');
+    const bar = document.getElementById('progressBar');
+    let holdTimeout, progress = 0;
+
+    btn.addEventListener('mousedown', startHold);
+    btn.addEventListener('touchstart', startHold);
+    btn.addEventListener('mouseup', cancelHold);
+    btn.addEventListener('mouseleave', cancelHold);
+    btn.addEventListener('touchend', cancelHold);
+
+    function startHold() {
+      progress = 0;
+      bar.style.width = '0%';
+      holdTimeout = setInterval(() => {
+        progress += 5;
+        bar.style.width = progress + '%';
+        if (progress >= 100) {
+          clearInterval(holdTimeout);
+          window.location.href = '/consulte/';
+        }
+      }, 100);
+    }
+
+    function cancelHold() {
+      clearInterval(holdTimeout);
+      bar.style.width = '0%';
+    }
+  </script>
+</body>
+</html>
